@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "bun run scripts/build-release.ts",
-    "check": "bun test && bun run build && bun run scripts/verify-bundle.ts dist",
+    "check": "bun test && bun run pages && bun run scripts/verify-bundle.ts dist",
+    "pages": "bun run build && bun run scripts/build-pages.ts",
     "preview": "python3 -m http.server 8002",
     "test": "bun test"
   }

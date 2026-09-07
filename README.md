@@ -2,6 +2,9 @@
 
 Shared visual theme for the FlatPPL website, specification, and playground.
 
+The [example site](https://flatppl.org/flatppl-theme/) shows the current
+shell, theme switch, syntax colours, and shared components.
+
 This repository owns the design tokens, product header and footer, shared web
 components, theme script, and brand assets. Consumer repositories vendor pinned
 release bundles. They keep their host adapters and page layouts locally.
