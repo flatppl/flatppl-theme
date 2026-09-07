@@ -1,0 +1,12 @@
+{
+  "name": "flatppl-theme",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "bun run scripts/build-release.ts",
+    "check": "bun test && bun run build && bun run scripts/verify-bundle.ts dist",
+    "preview": "python3 -m http.server 8002",
+    "test": "bun test"
+  }
+}

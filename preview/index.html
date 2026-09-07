@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" data-fp-active="site">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FlatPPL theme preview</title>
+    <link rel="stylesheet" href="../tokens.css">
+    <link rel="stylesheet" href="../components.css">
+    <link rel="stylesheet" href="../shell.css">
+    <style>
+      body { min-height: 100vh; margin: 0; display: flex; flex-direction: column; background: var(--fp-bg); }
+      main { box-sizing: border-box; width: min(100%, var(--fp-col-width)); padding: 3rem var(--fp-gutter); margin: auto; }
+      h1, h2 { color: var(--fp-text-strong); }
+      pre { color: var(--fp-text); }
+      footer { margin-top: auto; }
+    </style>
+  </head>
+  <body>
+    <div id="preview-header"></div>
+    <main class="fp-prose" id="main-content">
+      <h1>FlatPPL theme</h1>
+      <p>The shared shell leaves each property free to choose its content layout.</p>
+      <div class="fp-card">
+        <h2>Components</h2>
+        <p><button class="fp-btn fp-btn--primary">Primary action</button>
+          <button class="fp-btn">Secondary action</button></p>
+        <div class="fp-callout fp-callout--note">A shared note component.</div>
+        <div class="fp-code"><pre><code><span style="color:var(--fp-syn-purple)">x</span> = <span style="color:var(--fp-syn-cyan)">Normal</span>(<span style="color:var(--fp-syn-green)">0</span>, <span style="color:var(--fp-syn-green)">1</span>)</code></pre></div>
+      </div>
+    </main>
+    <div id="preview-footer"></div>
+    <script type="module">
+      const [header, footer] = await Promise.all([
+        fetch("../header.html").then((response) => response.text()),
+        fetch("../footer.html").then((response) => response.text()),
+      ]);
+      document.querySelector("#preview-header").innerHTML = header;
+      document.querySelector("#preview-footer").innerHTML = footer;
+      const script = document.createElement("script");
+      script.src = "../shell.js";
+      document.head.append(script);
+    </script>
+  </body>
+</html>

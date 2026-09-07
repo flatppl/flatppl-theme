@@ -1,4 +1,4 @@
 .worktrees/
 dist/
+node_modules/
 *.tgz
-
