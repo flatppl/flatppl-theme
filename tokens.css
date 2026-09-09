@@ -75,11 +75,14 @@
   --fp-active-bg: #234034;
   --fp-select: rgb(233 160 78 / 18%);
 
-  --fp-syn-red: #f58189;
-  --fp-syn-yellow: #e8be59;
-  --fp-syn-green: #a5cc62;
-  --fp-syn-cyan: #55c6bb;
-  --fp-syn-blue: #6bb8f0;
-  --fp-syn-purple: #cd8fee;
-  --fp-syn-comment: #8bb29b;
+  /* Chalk on the board: Gruvbox's warm set, with the slots that used to
+     sit on the board's own green (numbers, comments' neighbours, bound
+     names) moved to cream, light blue and pink. */
+  --fp-syn-red: #fe8019;
+  --fp-syn-yellow: #fabd2f;
+  --fp-syn-green: #ebdbb2;
+  --fp-syn-cyan: #8ec5f0;
+  --fp-syn-blue: #d3869b;
+  --fp-syn-purple: #fb6a8a;
+  --fp-syn-comment: #8fb39c;
 }
