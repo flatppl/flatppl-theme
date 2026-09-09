@@ -13,3 +13,8 @@ commit. Inspect the shell preview at desktop and narrow widths before proposing
 a release.
 
 Do not commit `dist/`. Releases build it from the tagged source commit.
+Consumers do not commit the bundle either: their builds copy a sibling checkout
+of this repository (development, unverified) or fetch and verify the pinned
+release archive (see README, "How consumers take the theme"). Keep the file
+list in `scripts/bundle.ts` REQUIRED_FILES in step with the consumers' copy
+lists when adding a bundled file.
