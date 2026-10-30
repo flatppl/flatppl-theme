@@ -59,9 +59,10 @@ html {
 }
 
 .fp-brand-mark {
-  width: 24px;
-  height: 24px;
-  background: center / contain no-repeat url("./assets/logo-original.png");
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  background: center / contain no-repeat url("./assets/logo.svg");
 }
 
 .fp-menu-button {
