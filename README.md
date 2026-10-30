@@ -48,6 +48,12 @@ create a tag until every consumer accepts the bundle candidate.
 
 ## Licensing
 
+`assets/logo-master.svg` is the editable logo source. Headers use its full flat
+variant, `assets/logo.svg`. The favicon uses only its
+flat plot layer, centred on green. Run `bun run icons` with
+`rsvg-convert` installed to regenerate the SVG, PNG, ICO, and touch icons.
+The ICO contains 16, 32, and 48 pixel images.
+
 Code, CSS, JavaScript, and HTML templates use the MIT License. FlatPPL brand
 assets use the Creative Commons Attribution 4.0 International License. See
 [`LICENSE.md`](LICENSE.md) for the file-level rules.
