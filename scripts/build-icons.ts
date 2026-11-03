@@ -5,11 +5,6 @@ import { join, resolve } from "node:path";
 const root = resolve(import.meta.dir, "..");
 const assets = join(root, "assets");
 const master = await readFile(join(assets, "logo-master.svg"), "utf8");
-// Header artwork keeps every shape but omits the chalk and board effects.
-await writeFile(join(assets, "logo.svg"), master
-  .replace('data-chalk="on"', 'data-chalk="off"')
-  .replace('data-edges="on"', 'data-edges="off"')
-  .replace('data-board="on"', 'data-board="off"'));
 
 function group(id: string): string {
   const opening = new RegExp(`<g id="${id}"[^>]*>`).exec(master);
@@ -29,11 +24,13 @@ const envelope = master.match(/<mask id="histogram-envelope"[\s\S]*?<\/mask>/)?.
 if (!envelope) throw new Error("missing histogram envelope");
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
   <title>FlatPPL</title>
-  <defs>${envelope}</defs>
-  <rect width="256" height="256" rx="32" fill="#224535"/>
-  <g fill="#ffffff" transform="translate(-5.64 .392) scale(1.04)">${group("plot-layer")}</g>
+  <defs>${envelope.replace('stroke-width="5.6"', 'stroke-width="12.8"')}<clipPath id="plot-baseline" clipPathUnits="userSpaceOnUse"><rect x="0" y="0" width="256" height="178"/></clipPath></defs>
+  <circle cx="128" cy="128" r="128" fill="#224535"/>
+  <g fill="#ffffff" transform="translate(128 128) scale(0.96) translate(-128.5 -123.5)">${group("plot-layer").replace('id="bell-curve"', 'id="bell-curve" clip-path="url(#plot-baseline)"').replace('stroke-width="3.2"', 'stroke-width="10.4"')}</g>
 </svg>
 `;
+// Headers and favicons share the same compact mark.
+await writeFile(join(assets, "logo.svg"), svg);
 await writeFile(join(assets, "favicon.svg"), svg);
 
 const temporary = await mkdtemp(join(tmpdir(), "flatppl-icons-"));
