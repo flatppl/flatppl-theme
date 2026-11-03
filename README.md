@@ -48,9 +48,11 @@ create a tag until every consumer accepts the bundle candidate.
 
 ## Licensing
 
-`assets/logo-master.svg` is the editable logo source. Headers use its full flat
-variant, `assets/logo.svg`. The favicon uses only its
-flat plot layer, centred on green. Run `bun run icons` with
+`assets/logo-master.svg` is the editable logo source. Headers and favicons
+share its flat plot layer
+in a green circle, `assets/logo.svg` and `assets/favicon.svg`. The thicker
+curve is clipped at the bin baseline, with a small gap above the masked bars.
+Run `bun run icons` with
 `rsvg-convert` installed to regenerate the SVG, PNG, ICO, and touch icons.
 The ICO contains 16, 32, and 48 pixel images.
 
@@ -60,7 +62,8 @@ and effect. Chalk blur follows the grain, and the 0.9-unit outline stays inside
 the shapes. The board uses seeded diagonal grain, fine dust, and faint wipe marks.
 
 `assets/proposals/circle.svg` and `assets/proposals/squircle.svg` preserve
-alternative header designs for future use. Current headers keep the full flat logo.
+alternative header designs for future use. Current headers use the circular
+plot mark beside the FlatPPL name.
 
 Code, CSS, JavaScript, and HTML templates use the MIT License. FlatPPL brand
 assets use the Creative Commons Attribution 4.0 International License. See
