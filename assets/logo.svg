@@ -21,7 +21,7 @@
   </style>
   <defs>
     <filter id="inset-outline" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
-      <feMorphology in="SourceAlpha" operator="erode" radius=".75" result="interior"/>
+      <feMorphology in="SourceAlpha" operator="erode" radius=".9" result="interior"/>
       <feComposite in="SourceAlpha" in2="interior" operator="out" result="rim"/>
       <feFlood flood-color="#ffffff"/>
       <feComposite in2="rim" operator="in"/>
@@ -29,7 +29,7 @@
     <filter id="chalk-edges" x="-2%" y="-2%" width="104%" height="104%" color-interpolation-filters="sRGB">
       <feTurbulence type="fractalNoise" baseFrequency=".09" numOctaves="2" seed="31" result="edge-noise"/>
       <feDisplacementMap in="SourceGraphic" in2="edge-noise" scale=".8" xChannelSelector="R" yChannelSelector="G"/>
-      <feGaussianBlur stdDeviation=".4"/>
+      <feGaussianBlur stdDeviation=".3"/>
     </filter>
     <mask id="histogram-envelope" maskUnits="userSpaceOnUse" x="0" y="0" width="256" height="256" style="mask-type:luminance">
       <path d="M20 176C55 174 75 154 92 116C107 83 116 69 130 69C145 69 154 92 167 122C184 160 206 172 237 176L237 178H20Z" fill="white"/>
@@ -55,18 +55,24 @@
         <rect x="-256" y="-256" width="768" height="768" fill="white" filter="url(#chalk-grain)"/>
       </g>
     </mask>
-    <filter id="board" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
-      <feTurbulence type="fractalNoise" baseFrequency=".014 .045" numOctaves="2" seed="4" result="wipe"/>
-      <feTurbulence type="fractalNoise" baseFrequency=".6" numOctaves="1" seed="12" result="dust"/>
-      <feComposite in="wipe" in2="dust" operator="arithmetic" k2=".8" k3=".2"/>
-      <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  .22 0 0 0 -.1"/>
+    <filter id="board" filterUnits="userSpaceOnUse" x="-64" y="-64" width="384" height="384" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency=".018 .045" numOctaves="2" seed="4" result="wipe"/>
+      <feTurbulence type="fractalNoise" baseFrequency=".24 1.3" numOctaves="2" seed="12" result="grain"/>
+      <feComposite in="wipe" in2="grain" operator="arithmetic" k2=".55" k3=".45" result="streaks"/>
+      <feTurbulence type="fractalNoise" baseFrequency=".055" numOctaves="1" seed="9" result="warp"/>
+      <feDisplacementMap in="streaks" in2="warp" scale="1.2" xChannelSelector="R" yChannelSelector="G" result="worn"/>
+      <feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves="1" seed="27" result="dust"/>
+      <feComposite in="worn" in2="dust" operator="arithmetic" k2=".7" k3=".3"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 .65  0 0 0 0 .8  0 0 0 0 .71  .32 0 0 0 -.12"/>
     </filter>
   </defs>
   <g id="background-layer" inkscape:groupmode="layer" inkscape:label="Background">
     <rect width="256" height="256" fill="#224535"/>
   </g>
   <g id="board-texture-layer" inkscape:groupmode="layer" inkscape:label="Board texture">
-    <rect width="256" height="256" fill="#224535" filter="url(#board)"/>
+    <g transform="rotate(-37 128 128)">
+      <rect x="-64" y="-64" width="384" height="384" fill="#224535" filter="url(#board)"/>
+    </g>
   </g>
   <g id="artwork-layer" inkscape:groupmode="layer" inkscape:label="Artwork" filter="url(#chalk-edges)">
   <g id="chalk-effect" fill="#ffffff" mask="url(#chalk)">

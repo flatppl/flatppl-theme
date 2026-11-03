@@ -54,6 +54,14 @@ flat plot layer, centred on green. Run `bun run icons` with
 `rsvg-convert` installed to regenerate the SVG, PNG, ICO, and touch icons.
 The ICO contains 16, 32, and 48 pixel images.
 
+The master keeps background, board texture, graph nodes, arrows, plot, text,
+and solid outlines on named layers. Root `data-*` attributes toggle each layer
+and effect. Chalk blur follows the grain, and the 0.9-unit outline stays inside
+the shapes. The board uses seeded diagonal grain, fine dust, and faint wipe marks.
+
+`assets/proposals/circle.svg` and `assets/proposals/squircle.svg` preserve
+alternative header designs for future use. Current headers keep the full flat logo.
+
 Code, CSS, JavaScript, and HTML templates use the MIT License. FlatPPL brand
 assets use the Creative Commons Attribution 4.0 International License. See
 [`LICENSE.md`](LICENSE.md) for the file-level rules.
