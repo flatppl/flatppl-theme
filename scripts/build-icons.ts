@@ -5,28 +5,41 @@ import { join, resolve } from "node:path";
 const root = resolve(import.meta.dir, "..");
 const assets = join(root, "assets");
 const master = await readFile(join(assets, "logo-master.svg"), "utf8");
+const squircleProposal = await readFile(join(assets, "proposals", "squircle.svg"), "utf8");
 
+// Whole element, so the arrow group keeps its stroke and marker attributes.
 function group(id: string): string {
   const opening = new RegExp(`<g id="${id}"[^>]*>`).exec(master);
   if (!opening) throw new Error(`missing logo group: ${id}`);
-  const content = opening.index + opening[0].length;
   const tags = /<g\b[^>]*>|<\/g>/g;
-  tags.lastIndex = content;
+  tags.lastIndex = opening.index + opening[0].length;
   let depth = 1;
   for (let tag = tags.exec(master); tag; tag = tags.exec(master)) {
     depth += tag[0] === "</g>" ? -1 : 1;
-    if (depth === 0) return master.slice(content, tag.index);
+    if (depth === 0) {
+      // The compact mark declares no inkscape namespace.
+      return master.slice(opening.index, tag.index + tag[0].length).replace(/\s+inkscape:\w+="[^"]*"/g, "");
+    }
   }
   throw new Error(`unclosed logo group: ${id}`);
 }
 
-const envelope = master.match(/<mask id="histogram-envelope"[\s\S]*?<\/mask>/)?.[0];
-if (!envelope) throw new Error("missing histogram envelope");
+function definition(pattern: RegExp, name: string): string {
+  const match = master.match(pattern)?.[0];
+  if (!match) throw new Error(`missing logo definition: ${name}`);
+  return match;
+}
+
+const envelope = definition(/<mask id="histogram-envelope"[\s\S]*?<\/mask>/, "histogram envelope");
+const arrowhead = definition(/<marker id="arrowhead"[\s\S]*?<\/marker>/, "arrowhead");
+const squircle = squircleProposal.match(/<g id="badge-background"><path d="([^"]+)"/)?.[1];
+if (!squircle) throw new Error("missing squircle background");
+// Graph and plot layers on the squircle background, placed as in the circular proposal.
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
   <title>FlatPPL</title>
-  <defs>${envelope.replace('stroke-width="5.6"', 'stroke-width="12.8"')}<clipPath id="plot-baseline" clipPathUnits="userSpaceOnUse"><rect x="0" y="0" width="256" height="178"/></clipPath></defs>
-  <circle cx="128" cy="128" r="128" fill="#224535"/>
-  <g fill="#ffffff" transform="translate(128 128) scale(0.96) translate(-128.5 -123.5)">${group("plot-layer").replace('id="bell-curve"', 'id="bell-curve" clip-path="url(#plot-baseline)"').replace('stroke-width="3.2"', 'stroke-width="10.4"')}</g>
+  <defs>${envelope}${arrowhead}</defs>
+  <path d="${squircle}" fill="#224535"/>
+  <g fill="#ffffff" transform="translate(128 128) scale(.88) translate(-128 -98)">${group("graph-nodes")}${group("graph-arrows")}${group("plot-layer")}</g>
 </svg>
 `;
 // Headers and favicons share the same compact mark.
