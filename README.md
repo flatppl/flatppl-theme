@@ -51,6 +51,9 @@ create a tag until every consumer accepts the bundle candidate.
 `assets/logo-master.svg` is the editable logo source. Headers and favicons
 share its flat graph and plot layers on the squircle background of
 `assets/proposals/squircle.svg`, in `assets/logo.svg` and `assets/favicon.svg`.
+That background is a superellipse with exponent 4.5, sampled at 128 points.
+The 16 pixel icons keep the plot-only mark with a thicker curve, because the
+graph smears at that size.
 Run `bun run icons` with
 `rsvg-convert` installed to regenerate the SVG, PNG, ICO, and touch icons.
 The ICO contains 16, 32, and 48 pixel images.
