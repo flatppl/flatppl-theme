@@ -49,9 +49,11 @@ create a tag until every consumer accepts the bundle candidate.
 ## Licensing
 
 `assets/logo-master.svg` is the editable logo source. Headers and favicons
-share its flat plot layer
-in a green circle, `assets/logo.svg` and `assets/favicon.svg`. The thicker
-curve is clipped at the bin baseline, with a small gap above the masked bars.
+share its flat graph and plot layers on the squircle background of
+`assets/proposals/squircle.svg`, in `assets/logo.svg` and `assets/favicon.svg`.
+That background is a superellipse with exponent 4.5, sampled at 128 points.
+The 16 pixel icons keep the plot-only mark with a thicker curve, because the
+graph smears at that size.
 Run `bun run icons` with
 `rsvg-convert` installed to regenerate the SVG, PNG, ICO, and touch icons.
 The ICO contains 16, 32, and 48 pixel images.
@@ -62,8 +64,8 @@ and effect. Chalk blur follows the grain, and the 0.9-unit outline stays inside
 the shapes. The board uses seeded diagonal grain, fine dust, and faint wipe marks.
 
 `assets/proposals/circle.svg` and `assets/proposals/squircle.svg` preserve
-alternative header designs for future use. Current headers use the circular
-plot mark beside the FlatPPL name.
+alternative header designs for future use. Current headers use the squircle
+graph and plot mark beside the FlatPPL name.
 
 Code, CSS, JavaScript, and HTML templates use the MIT License. FlatPPL brand
 assets use the Creative Commons Attribution 4.0 International License. See
