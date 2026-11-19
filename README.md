@@ -22,7 +22,7 @@ consumer build must remain self-contained and reproducible.
 - `assets/` contains the brand mark, wordmark, original art, and favicon set.
 - `scripts/` builds and verifies the release bundle.
 
-Host adapters must set `data-fp-active="site|spec|play|docs"` on the root
+Host adapters must set `data-fp-active="site|spec|learn|play|docs"` on the root
 element. `shell.js` then adds `aria-current="page"` to the active product link.
 Load `shell.js` synchronously in the document head to apply the saved theme
 before rendering.

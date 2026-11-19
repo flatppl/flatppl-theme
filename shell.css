@@ -77,6 +77,7 @@ html {
 
 :root[data-fp-active="site"] [data-fp-current="site"],
 :root[data-fp-active="spec"] [data-fp-current="spec"],
+:root[data-fp-active="learn"] [data-fp-current="learn"],
 :root[data-fp-active="play"] [data-fp-current="play"],
 :root[data-fp-active="docs"] [data-fp-current="docs"] {
   display: inline;
@@ -105,6 +106,7 @@ html {
 
 :root[data-fp-active="site"] [data-fp-nav="site"],
 :root[data-fp-active="spec"] [data-fp-nav="spec"],
+:root[data-fp-active="learn"] [data-fp-nav="learn"],
 :root[data-fp-active="play"] [data-fp-nav="play"],
 :root[data-fp-active="docs"] [data-fp-nav="docs"] {
   color: var(--fp-accent);
